@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">RoomExample</string>
+    <string name="new_task_hint">Escribe una nueva tarea</string>
+    <string name="add">Agregar</string>
 </resources>
