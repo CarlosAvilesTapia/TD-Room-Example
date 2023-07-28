@@ -9,12 +9,16 @@ import androidx.room.Query
 import androidx.room.Update
 
 // Interfaz que nos permite acceder a la información en la base de datos
+
+const val defaultStrategy = OnConflictStrategy.IGNORE
 @Dao
 interface TaskDAO {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+
+
+    @Insert(onConflict = defaultStrategy)
     suspend fun insertTask(task: Task)
 
-    @Insert
+    @Insert(onConflict = defaultStrategy)
     suspend fun insertMultipleTask(list: List<Task>)
 
     @Update
@@ -24,5 +28,5 @@ interface TaskDAO {
     suspend fun deleteOneTask(task: Task)
 
     @Query("SELECT * FROM task_table ORDER BY id ASC")
-    fun getAllTask(): List<Task>
+    fun getAllTask(): LiveData<List<Task>>
 }
